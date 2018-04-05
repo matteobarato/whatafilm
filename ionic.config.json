@@ -1,0 +1,8 @@
+{
+  "name": "whatafilm",
+  "app_id": "61013be7",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
