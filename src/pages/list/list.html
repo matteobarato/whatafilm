@@ -9,15 +9,10 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
+    <button ion-button outline (click)="show=!show">show history</button>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  <ion-list>
+    <textarea *ngIf="show" style="width:100%;height:auto; min-height:1000px" value="{{history.toJson()}}"> </textarea>
+  </ion-list>
+
 </ion-content>

@@ -1,3 +1,42 @@
 page-home {
+  #card-stack {
+     width: 100%;
+     height: 100%;
+     position: relative;
+   }
 
+   #card-stack ion-card {
+     border-radius: 5px;
+     position: absolute;
+     text-align: center;
+     top: 3%;
+     height: 90%;
+   }
+
+   [swing-card] {
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+   }
+   [swing-card]  * {
+     color: white !important;
+     text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+   }
+   [swing-card]  ion-card-content {
+     position: absolute;
+     bottom: 1em;
+   }
+
+   .item{
+     background: transparent;
+   }
+
+   #background_directions{
+     position: absolute;
+     z-index: -1;
+     height: 100%;
+     width: 100%;
+   }
 }

@@ -6,13 +6,37 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
-
+<div id="background_directions"></div>
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <ion-row>
+    <ion-col col-6>
+    <h3 ion-text float-left>Liked: <span ion-text>{{history.count_liked}}</span></h3>
+  </ion-col>
+    <ion-col col-6>
+    <h3 ion-text float-right>Unliked: <span ion-text>{{history.count_unliked}}</span></h3>
+  </ion-col>
+  </ion-row>
+  <div swing-stack #moviestack [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
+    <ion-card #moviecard swing-card *ngFor="let m of movies" [style.backgroundImage]="'url('+m.poster_path+')'">
+      <button ion-button (click)="unkwownMovie()"><ion-icon name="help"></ion-icon></button>
+      <ion-card-content>
+        <ion-row>
+          <ion-item>
+            <!-- <ion-avatar item-left>
+              <img *ngIf="m.picture" [src]="m.picture.medium">
+            </ion-avatar> -->
+            <h1 ion-text>{{ m.title }}</h1>
+            <p>
+              <ion-icon *ngFor="let vote of m.vote_encoded" [name]="vote===1? 'star':'star-half'"></ion-icon>
+            </p>
+            <p>{{ m.release_date | date }} &bull;  {{ m.runtime }}</p>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <button *ngFor="let g of movies.genres" ion-button outline>{{g.name}}</button>
+        </ion-row>
+      </ion-card-content>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    </ion-card>
+  </div>
 </ion-content>
