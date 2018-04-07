@@ -25,6 +25,17 @@ export class HistoryClass {
     let data = { liked: this.liked, unliked: this.unliked }
     localStorage.setItem('History', JSON.stringify(data))
   }
+  find(id: number) {
+    let index = this.liked.findIndex(m => m.id == id)
+    if (index === -1) {
+      index = this.unliked.findIndex(m => m.id == id)
+    }
+    return index;
+  }
+  contain(id: number) {
+    return this.find(id) !== -1;
+  }
+
   restoreFromLocal() {
     let data = localStorage.getItem('History');
     if (data) {

@@ -5,7 +5,7 @@ export class Movie {
   id: number;
   backdrop_path: string;
   adult: boolean;
-  genres: any[];
+  genres: any[]=[];
   imdb_id: string;
   original_language: string;
   original_title: string;
@@ -23,12 +23,14 @@ export class Movie {
   vote_average: number;
   vote_count: number;
   isLoaded: boolean = false;
+  _time: number;
 
   tmdb: TMDB;
   vote_encoded:number[]=[];
 
   constructor(private http: HttpClient) {
     this.tmdb = new TMDB(http)
+    this._time = new Date().getTime()
   }
 
   setData(data: any) {
@@ -36,6 +38,9 @@ export class Movie {
       this[el] = data[el]
       if (el === 'backdrop_path' || el === 'poster_path')
         this[el] = 'https://image.tmdb.org/t/p/w500/' + data[el]
+      if (el === 'genre_ids')
+        for (let g of  data[el])
+          this.genres.push(this.tmdb.getGenre(g))
     });
     this.encodeStars()
     return this

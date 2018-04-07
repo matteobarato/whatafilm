@@ -17,8 +17,8 @@
   </ion-col>
   </ion-row>
   <div swing-stack #moviestack [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
-    <ion-card #moviecard swing-card *ngFor="let m of movies" [style.backgroundImage]="'url('+m.poster_path+')'">
-      <button ion-button (click)="unkwownMovie()"><ion-icon name="help"></ion-icon></button>
+    <ion-card #moviecard swing-card *ngFor="let m of movies; let i=index" [style.zIndex]="-1*i" [style.marginTop]="i===0? '0px': (i*6)+'px'" [style.backgroundImage]="'url('+m.poster_path+')'">
+      <button ion-button round (click)="unkwownMovie()"><ion-icon name="help"></ion-icon></button>
       <ion-card-content>
         <ion-row>
           <ion-item>
@@ -33,7 +33,7 @@
           </ion-item>
         </ion-row>
         <ion-row>
-          <button *ngFor="let g of movies.genres" ion-button outline>{{g.name}}</button>
+          <button *ngFor="let g of m.genres" ion-button round>{{g.name}}</button>
         </ion-row>
       </ion-card-content>
 
