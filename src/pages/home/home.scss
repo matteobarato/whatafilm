@@ -1,4 +1,7 @@
 page-home {
+  .scroll-content{
+    overflow: hidden !important;
+  }
   #card-stack {
      width: 100%;
      height: 100%;
@@ -10,13 +13,16 @@ page-home {
      position: absolute;
      text-align: center;
      top: 3%;
-     height: 90%;
+     height: 85%;
+     max-height: 700px;
+     max-width: 500px;
    }
 
    [swing-card] {
      background-repeat: no-repeat;
      background-size: cover;
      background-position: center;
+     transition: margin .3s ease-out;
    }
    [swing-card]  * {
      color: white !important;

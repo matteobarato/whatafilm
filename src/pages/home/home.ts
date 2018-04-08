@@ -63,19 +63,19 @@ export class HomePage {
 
   // Called whenever we drag an element
   onItemMove(element, x, y, r) {
-    var color = '';
-    var abs = Math.abs(x);
-    let min = Math.trunc(Math.min(16 * 16 - abs, 16 * 16));
-    let hexCode = this.decimalToHex(min, 2);
-
-    if (x < 0) {
-      color = '#FF' + hexCode + hexCode;
-    } else {
-      color = '#' + hexCode + 'FF' + hexCode;
-    }
+    // var color = '';
+    // var abs = Math.abs(x);
+    // let min = Math.trunc(Math.min(16 * 16 - abs, 16 * 16));
+    // let hexCode = this.decimalToHex(min, 2);
+    //
+    // if (x < 0) {
+    //   color = '#FF' + hexCode + hexCode;
+    // } else {
+    //   color = '#' + hexCode + 'FF' + hexCode;
+    // }
 
     // this.back_el.style.background = color;
-    element.style['transform'] = `translate3d(0, 0, 0) translate(${x}px, ${y}px) rotate(${r}deg)`;
+    element.style['transform'] = `translate3d(${x}px, 0px, ${r}px) translate(${x}px, ${y}px) rotate(${r}deg)`;
   }
 
   // Connected through HTML
@@ -90,7 +90,8 @@ export class HomePage {
   }
 
   unkwownMovie() {
-    this.movies.shift()
+    let removedCard = this.movies.shift();
+    this.history.unknown(removedCard.toJson())
     this.addNewCards(1);
   }
 
@@ -108,7 +109,7 @@ export class HomePage {
     this.tmdb.popular().concatMap(data => Observable.from(data['results'])).filter(item => !this.history.contain(item['id']))
       .finally(() => this.movies.length < INIT_MOVIE_STACK ? this.addNewCards(INIT_MOVIE_STACK) : false)
       .subscribe(data => {
-        console.log('|GET MOVIE|', data)
+        // console.log('|GET MOVIE|', data)
         let m = new Movie(this.http)
         m.setData(data)
         this.stack.push(m)
