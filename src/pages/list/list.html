@@ -8,6 +8,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label color="primary">Nome</ion-label>
+    <ion-input [(ngModel)]="name" placeholder="Inserisci il tuo nome"></ion-input>
+  </ion-item>
+  <ion-list>
+    <button ion-button outline (click)="sendHistory()" color="secondary">send history</button>
+  </ion-list>
   <ion-list>
     <button ion-button outline (click)="show=!show">show history</button>
   </ion-list>

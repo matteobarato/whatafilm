@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { History, HistoryClass } from '../../models/History';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-list',
@@ -9,11 +10,12 @@ import { History, HistoryClass } from '../../models/History';
 export class ListPage {
   selectedItem: any;
   icons: string[];
+  name: string;
   items: Array<{title: string, note: string, icon: string}>;
   show:boolean = false;
   history:HistoryClass=History;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -36,5 +38,15 @@ export class ListPage {
     this.navCtrl.push(ListPage, {
       item: item
     });
+  }
+
+  sendHistory(){
+    this.http.post('http://cipizio.it/saver.php?token=asdfasdf',
+    {
+      name: this.name,
+      message: this.history.toJson()
+    }).subscribe((res)=>{
+      alert('Inviato')
+    })
   }
 }

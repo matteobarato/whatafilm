@@ -47,11 +47,19 @@ export class Movie {
   }
 
   encodeStars() {
-    let vote = this.vote_average;
+    let vote = this.vote_average/2;
+    let stars = 5;
     let arr_encode: number[] = [];
-    while (vote > 0) {
-      vote >= 1 ? arr_encode.push(1) : arr_encode.push(0.5);
+    while (stars > 0) {
+      if (vote>=1){
+        arr_encode.push(1)
+      }else if(vote<1 && vote>0){
+        arr_encode.push(0.5)
+      }else{
+        arr_encode.push(0)
+      }
       vote--;
+      stars--;
     }
     this.vote_encoded=arr_encode;
   }
