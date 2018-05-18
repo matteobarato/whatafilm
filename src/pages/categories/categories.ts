@@ -32,7 +32,6 @@ export  class CategoriesPage {
     background: "linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)",
     call: "toprated"
   },
-  
 ]
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
