@@ -1,0 +1,36 @@
+<ion-header half-screen>
+  <span class="animated zoomIn" bubble></span>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-col col-6 float-left text-left ion-text color="light"><h6>Unliked: {{history.count_unliked}}</h6></ion-col>
+    <ion-col col-6 float-right text-right ion-text  color="light"><h6>Liked: {{history.count_liked}}</h6></ion-col>
+  </ion-list>
+  <ion-item>
+    <ion-label color="primary">Nome</ion-label>
+    <ion-input [(ngModel)]="name" placeholder="Inserisci il tuo nome"></ion-input>
+  </ion-item>
+  <ion-list padding>
+    <button ion-button (click)="sendHistory()">send history</button>
+  </ion-list>
+  <ion-list padding>
+    <button ion-button outline (click)="resetNN()" colot="dark">update Neural_Engine from origin</button>
+  </ion-list>
+  <ion-list padding>
+    <button ion-button outline (click)="resetHistory()" colot="red">reset History</button>
+  </ion-list>
+  <ion-list padding>
+    <h5>Rifiutati</h5>
+    <p *ngFor="let h of history.rejected | slice: -10">
+      {{h.title}}
+    </p>
+  </ion-list>
+
+
+</ion-content>

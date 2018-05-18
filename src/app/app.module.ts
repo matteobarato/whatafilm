@@ -7,7 +7,8 @@ import { TMDB } from '../models/TMDB';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { CategoriesPage } from '../pages/categories/categories';
+import { SettingsPage } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,7 +17,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    SettingsPage,
+    CategoriesPage,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    SettingsPage,
+    CategoriesPage
   ],
   providers: [
     StatusBar,

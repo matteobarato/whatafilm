@@ -1,13 +1,16 @@
 <ion-menu [content]="content">
-  <ion-header>
+  <span class="animated zoomIn" bubble style="background-image: linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);"></span>
+  <ion-header half-screen>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>WAF<br><small style="font-size:14px;">WhataFilm</small>
+      </ion-title>
+
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+  <ion-content >
+    <ion-list style="margin-top:20%;">
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" style="color:#FAFAFA;">
         {{p.title}}
       </button>
     </ion-list>

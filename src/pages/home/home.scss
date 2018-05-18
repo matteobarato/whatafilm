@@ -1,77 +1,16 @@
 page-home {
-  [half-screen]{
-background-image: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);}  ion-content{
-    top: 46px !important;
+  .card-stack ion-card {
+    border-radius: 1em;
+    position: absolute;
+    text-align: center;
+    top: 3%;
+    height: 92%;
+    max-height: 700px;
+    max-width: 400px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .fixed-content{
-    margin-top: 0px !important;
-  }
-  .scroll-content{
-    margin-top: 0px !important;
-    overflow: hidden !important;
-  }
-  #card-stack {
-     width: 100%;
-     height: 90%;
-     position: relative;
-   }
 
-   #card-stack ion-card {
-     border-radius: 5px;
-     position: absolute;
-     text-align: center;
-     top: 3%;
-     height: 86%;
-     max-height: 700px;
-     max-width: 500px;
-   }
-
-   [swing-card] {
-     //font-family: 'Montserrat', sans-serif;
-     will-change: transform;
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-position: center;
-     transition: margin .3s ease-out;
-   }
-   [swing-card] h1 {
-     font-family: 'Montserrat', sans-serif;
-     font-weight: bold;
-     word-break: normal;
-     white-space: normal;
-     font-size: 3rem;
-   }
-   .card0{
-     z-index: 2;
-     transform: translateY(0px)  scale(1);
-   }
-   .card1{
-     z-index: 1;
-     transform: translateY(-20px) scale(.9) ;
-   }
-   .card2{
-     z-index: 0;
-     transform: translateY(-50px) scale(.8);
-   }
-   [swing-card]  * {
-     color: white !important;
-     text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-             0px 8px 13px rgba(0,0,0,0.1),
-             0px 18px 23px rgba(0,0,0,0.1);
-   }
-   [swing-card]  ion-card-content {
-     position: absolute;
-     bottom: 1em;
-   }
-
-   .item{
-     background: transparent;
-   }
-
-   #background_directions{
-     position: absolute;
-     z-index: -1;
-     height: 100%;
-     width: 100%;
-   }
 }

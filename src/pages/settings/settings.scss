@@ -1,0 +1,16 @@
+page-settings {
+  [bubble]{
+    background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+  }
+  ion-content{
+      top: 5em !important;
+  }
+  .fixed-content{
+    margin-top: 0px !important;
+  }
+  .scroll-content{
+    margin-top: 0px !important;
+    overflow: hidden !important;
+  }
+
+}

@@ -39,8 +39,10 @@
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "keras-js": "^1.0.3",
+    "node-vibrant": "^3.0.0",
     "rxjs": "5.5.8",
     "sw-toolbox": "3.6.0",
+    "synaptic": "^1.1.4",
     "zone.js": "0.8.20"
   },
   "devDependencies": {

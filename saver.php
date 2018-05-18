@@ -14,7 +14,7 @@ if (!isset($_POST['message']) || $_POST['message']=='') die('no message');
 $name = isset($_POST['name'])? $_POST['name'] : '';
 $now=time();
 
-file_put_contents("../note/$name_$now.json", $_GET['message']);
+file_put_contents("../note/".$name."_".$now.".json", $_POST['message']);
 
 die(json_encode(['message'=>'ok']));
 ?>

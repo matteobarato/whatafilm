@@ -9,6 +9,7 @@ import {
   SwingCardComponent} from 'angular2-swing';
 import {Movie} from '../../models/Movie'
 import {TMDB} from '../../models/TMDB'
+import {NeuralEngine} from '../../models/NeuralEngine'
 import { History, HistoryClass } from '../../models/History';
 
 var MIN_STACK = 20;
@@ -24,12 +25,14 @@ export class HomePage {
   stackConfig: StackConfig;
 
   movies: Movie[] = [];
+  neural: NeuralEngine;
   stack: Movie[] = [];
   tmdb: TMDB;
   history: HistoryClass = History;
 
   constructor(private http: HttpClient) {
     this.tmdb = new TMDB(http)
+    this.neural = new NeuralEngine(http)
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
@@ -62,8 +65,10 @@ export class HomePage {
     this.addNewCards(1);
     if (like) {
       this.history.like(removedCard.toJson())
+      this.neural.adjust(removedCard, 1)
     } else {
       this.history.unlike(removedCard.toJson())
+      this.neural.adjust(removedCard, 0)
     }
   }
 
@@ -77,7 +82,15 @@ export class HomePage {
   addNewCards(count: number) {
     for (let i = 0; i < count; i++) {
       let mov = this.stack.shift()
-      if (mov) this.movies.push(mov)
+      if (mov) {
+        mov.load()
+        // let bubble = document.getElementById('bubble');
+        // bubble.style.opacity = '0';
+        // setTimeout(()=>{
+        //   bubble.style.opacity ='1';
+        // }, 500);
+        this.movies.push(mov)
+      }
     }
     console.log(this.movies.map(el=>el.title))
     if (this.stack.length < MIN_STACK) this.addToStack()
@@ -90,7 +103,16 @@ export class HomePage {
         // console.log('|GET MOVIE|', data)
         let m = new Movie(this.http)
         m.setData(data)
-        this.stack.push(m)
+
+        let good = this.neural.think(m) // NN think
+        console.info(good)
+        if (good.length>0 && good[0] > 0.65){
+          this.stack.push(m)
+        }else{
+          this.history.reject(m)
+          if (Math.random() > 0.25) this.stack.push(m); //second chance
+        }
+
       })
   }
 

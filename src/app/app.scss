@@ -13,12 +13,19 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+body {
+  background-color: white;
+}
+.ion-page{
+  background-color: white;
+}
+
 ion-header {
   font-family: 'Montserrat';
 }
 
 ion-header[half-screen] {
-  height:48%;
+  height: 48%;
   z-index: -1;
 
   .toolbar-background-md {
@@ -40,12 +47,129 @@ ion-header[half-screen] {
     font-size: 2em !important;
     font-weight: bold !important;
   }
-
-
 }
+
+ion-header[half-screen]::after {
+  display: none;
+}
+[bubble]{
+  background: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
+}
+ion-content{
+    top: 3em !important;
+}
+.fixed-content{
+  margin-top: 0px !important;
+}
+.scroll-content{
+  margin-top: 0px !important;
+  overflow: hidden !important;
+}
+
+[bubble] {
+  position: absolute;
+  height: 200vw;
+  width: 200vw;
+  top: -100vw;
+  left: -50vw;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 1;
+  -webkit-transition: opacity 600ms ease-out;
+  -ms-transition: opacity 600ms ease-out;
+  transition: opacity 600ms ease-out;
+  will-change: transform;
+}
+
 .content-md {
   background-color: transparent;
 }
+.card-stack {
+   width: 95%;
+   margin: 2.5%;
+   height: 90%;
+   position: relative;
+ }
+
+ion-card.full-card {
+  margin-top: 0px;
+   //font-family: 'Montserrat', sans-serif;
+   will-change: transform, opacity;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+   transition: margin .3s ease-out;
+ }
+ ion-card.full-card h1 {
+   //font-family: 'Gravitas One', cursive;
+   font-weight: bold;
+   word-break: normal;
+   white-space: normal;
+   font-size: 4rem;
+ }
+ .card0{
+   z-index: 2;
+   transform: translateY(-2em)  scale(1);
+ }
+ .card1{
+   z-index: 1;
+   transform: translateY(+1.4em) scale(.9) ;
+   opacity: .8;
+ }
+ .card2{
+   z-index: 0;
+   transform: translateY(+4em) scale(.8);
+   opacity: .4;
+ }
+ ion-card.full-card ion-item *{
+   color: inherit !important;
+   text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+           0px 8px 13px rgba(0,0,0,0.1),
+           0px 18px 23px rgba(0,0,0,0.1);
+ }
+ ion-card.full-card  ion-card-content {
+   position: absolute;
+   bottom: 1em;
+ }
+
+ .item{
+   background: transparent;
+ }
+
 .content-ios {
   background-color: transparent;
+}
+
+[abs-center-icon] {
+  position: absolute;
+  top: 52%;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  font-size: 4em;
+  color: #dedede;
+}
+
+[fix-footer]{
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  z-index: 100000;
+}
+[fix-footer] ion-icon{
+  font-size: 1.6em !important;
+}
+ion-avatar{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+.scroll-left{
+  overflow-x: scroll;
 }

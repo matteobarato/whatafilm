@@ -1,4 +1,7 @@
 <ion-header half-screen>
+  <!--span class="animated zoomIn" bubble></span-->
+  <span class="animated zoomIn" bubble [style.background]="movies && movies.length>0? movies[0]._gradient_css : ''"></span>
+
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -7,24 +10,18 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-row>
-    <ion-col col-6>
-      <h5 ion-text color="light" float-left texr-left><ion-icon name="arrow-dropleft"></ion-icon> Unliked: <span ion-text>{{history.count_unliked}}</span> </h5>
 
-  </ion-col>
-    <ion-col col-6>
-      <h5 ion-text color="light" float-right text-right>Liked: <span ion-text>{{history.count_liked}}</span>   <ion-icon name="arrow-dropright"></ion-icon></h5>
-  </ion-col>
-  </ion-row>
-  <div swing-stack #moviestack [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
-    <ion-card #moviecard swing-card *ngFor="let m of movies; let i=index" [ngClass]="{'card0':i==0, 'card1':i==1, 'card2':i==2}" [style.backgroundImage]="'url('+m.poster_path+')'">
-      <button ion-button round (click)="unkwownMovie()"><ion-icon name="help"></ion-icon></button>
+  <span abs-center-icon><ion-icon name="refresh"></ion-icon></span>
+  <div swing-stack #moviestack [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack" class="card-stack">
+    <ion-card #moviecard swing-card class="full-card" *ngFor="let m of movies; let i=index" [ngClass]="{'card0':i==0, 'card1':i==1, 'card2':i==2}" [style.backgroundImage]="'url('+m.poster_path+')'">
+      <ion-item *ngIf="m.topActor">
+        <ion-avatar item-left [style.backgroundImage]="'url('+m.topActor['profile_path']+')'">
+        </ion-avatar>
+      </ion-item>
       <ion-card-content>
         <ion-row>
-          <ion-item>
-            <!-- <ion-avatar item-left>
-              <img *ngIf="m.picture" [src]="m.picture.medium">
-            </ion-avatar> -->
+          <ion-item [style.color]="m._color_css">
+
             <h1 ion-text>{{ m.title }}</h1>
             <p>
               <ion-icon *ngFor="let vote of m.vote_encoded" [name]="vote===1? 'star':(vote===0.5? 'star-half': 'star-outline')"></ion-icon>
@@ -33,10 +30,13 @@
           </ion-item>
         </ion-row>
         <ion-row>
-          <button *ngFor="let g of m.genres" ion-button round>{{g.name}}</button>
+          <button *ngFor="let g of m.genres" ion-button color="light" round>{{g.name}}</button>
         </ion-row>
       </ion-card-content>
-
     </ion-card>
   </div>
+<ion-row fix-footer text-center>
+  <ion-col><button ion-button round color="light" (click)="unkwownMovie()"><ion-icon color="blue" name="help"></ion-icon></button></ion-col>
+  <ion-col><button ion-button round color="light"><ion-icon color="yellow"name="time"></ion-icon></button></ion-col>
+</ion-row>
 </ion-content>

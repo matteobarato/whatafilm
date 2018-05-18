@@ -4,6 +4,7 @@ export class HistoryClass {
   liked: any[] = [];
   unliked: any[] = [];
   unknowns: any[] = [];
+  rejected: any[] = [];
   count_liked: number = 0;
   count_unliked: number = 0;
   count_unknowns: number = 0;
@@ -27,8 +28,11 @@ export class HistoryClass {
     this.count_unliked++
     this.saveToLocal()
   }
+  reject(obj: any) {
+    this.rejected.push(obj);
+  }
   saveToLocal() {
-    let data = { liked: this.liked, unliked: this.unliked, unknowns:this.unknowns}
+    let data = { liked: this.liked, unliked: this.unliked, unknowns: this.unknowns }
     localStorage.setItem('History', JSON.stringify(data))
   }
   find(id: number) {
@@ -46,6 +50,15 @@ export class HistoryClass {
   }
 
   restoreFromLocal() {
+    localStorage.removeItem('History');
+    this.liked = []
+    this.unliked = []
+    this.unknowns = []
+    this.count_liked = 0
+    this.count_unliked = 0
+    this.count_unknowns = 0
+  }
+  reset() {
     let data = localStorage.getItem('History');
     if (data) {
       data = JSON.parse(data)
